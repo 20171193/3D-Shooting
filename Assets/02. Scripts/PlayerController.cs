@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -102,6 +103,15 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         anim.SetTrigger("Fire");
+    }
+
+    private void OnReload(InputValue value)
+    {
+        Reload();
+    }
+    private void Reload()
+    {
+        anim.SetTrigger("Reload");
     }
 
     #endregion

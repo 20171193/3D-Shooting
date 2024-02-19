@@ -28,6 +28,11 @@ public class PlayerCameraController : MonoBehaviour
     [Header("Ballancing")]
     [Space(2)]
     [SerializeField]
+    private Transform target;
+    [SerializeField]
+    private float distance;
+
+    [SerializeField]
     private float mouseSensitivity;
     [SerializeField]
     private Vector2 inputDir;
@@ -94,9 +99,15 @@ public class PlayerCameraController : MonoBehaviour
         }
     }
 
+    private void SetTargetPos()
+    {
+        target.position = Camera.main.transform.position + Camera.main.transform.forward * distance;
+    }
+
     // FPS Update
     private void Update()
     {
+        SetTargetPos();
         //transform.Rotate(Vector3.up, mouseSensitivity * inputDir.x * Time.deltaTime);
 
         if (curCameraMode == CameraType.FPS)
