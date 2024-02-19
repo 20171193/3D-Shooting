@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
 
+    [SerializeField]
+    private Animator anim;
+
     [Space(3)]
     #endregion
 
@@ -18,8 +21,11 @@ public class PlayerController : MonoBehaviour
     [Header("Specs")]
     [Space(2)]
     [SerializeField]
-    private float moveSpeed;
+    private float runSpeed;
 
+    [SerializeField]
+    private float walkSpeed;
+    
     [SerializeField]
     private float jumpSpeed;
     [Space(3)]
@@ -43,9 +49,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isGround;
     [SerializeField]
+    private bool isWalk;
+    [SerializeField]
     public int groundCount;
 
     #region Input Actions
+    private void OnWalk(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            isWalk = true;
+        }
+        else
+        {
+            isWalk = false;
+        }
+    }
     private void OnMove(InputValue value)
     {
         Vector2 inputDir = value.Get<Vector2>();
@@ -54,8 +73,13 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
+        float moveSpeed = isWalk ? walkSpeed : runSpeed;  
+
         controller.Move(transform.right * moveDir.x * moveSpeed * Time.deltaTime);
         controller.Move(transform.forward * moveDir.z * moveSpeed * Time.deltaTime);
+
+        anim.SetFloat("XSpeed", moveDir.x * moveSpeed, 0.1f, Time.deltaTime);
+        anim.SetFloat("YSpeed", moveDir.z * moveSpeed, 0.1f, Time.deltaTime);
     }
 
     private void OnJump(InputValue value)
@@ -70,6 +94,16 @@ public class PlayerController : MonoBehaviour
         ySpeed += Physics.gravity.y * Time.deltaTime;
         controller.Move(Vector3.up * ySpeed * Time.deltaTime);
     }
+
+    private void OnFire(InputValue value)
+    {
+        Fire();
+    }
+    private void Fire()
+    {
+        anim.SetTrigger("Fire");
+    }
+
     #endregion
 
     #region Collision Callback
