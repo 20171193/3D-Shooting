@@ -33,6 +33,33 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Walk",
+                    "type": "PassThrough",
+                    "id": "df86d81b-2ad1-4912-b870-64ccbc52b6e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "d69d9476-e54e-4510-b175-b140db97ef1c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "e56bc976-caee-43a6-b4c3-cec1774d159a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "FPSViewMode",
                     "type": "Button",
                     "id": "171a20af-133d-49b1-8f12-497deff156d6",
@@ -148,6 +175,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "TPSViewMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "813229ba-636c-45aa-ba13-8f92e4dc42ae",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37b2a852-23e6-42f9-a915-c6b9ccc771c0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd0b5cfc-a13b-4054-b390-172913e1b27d",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -28,6 +28,11 @@ public class PlayerCameraController : MonoBehaviour
     [Header("Ballancing")]
     [Space(2)]
     [SerializeField]
+    private Transform target;
+    [SerializeField]
+    private float distance;
+
+    [SerializeField]
     private float mouseSensitivity;
     [SerializeField]
     private Vector2 inputDir;
@@ -43,7 +48,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Awake()
     {
-        curCameraMode = CameraType.FPS;
+        ChangeViewMode(curCameraMode);
     }
 
     private void OnEnable()
@@ -94,16 +99,22 @@ public class PlayerCameraController : MonoBehaviour
         }
     }
 
+    private void SetTargetPos()
+    {
+        target.position = Camera.main.transform.position + Camera.main.transform.forward * distance;
+    }
+
     // FPS Update
     private void Update()
     {
+        SetTargetPos();
+        //transform.Rotate(Vector3.up, mouseSensitivity * inputDir.x * Time.deltaTime);
 
         if (curCameraMode == CameraType.FPS)
         {
             xRotation -= mouseSensitivity * inputDir.y * Time.deltaTime;
             xRotation = Mathf.Clamp(xRotation, 0f, 140f);
             // Player Rotate
-            transform.Rotate(Vector3.up, mouseSensitivity * inputDir.x * Time.deltaTime);
             fpsCameraRoot.localRotation = Quaternion.Euler(xRotation, -90f, 0);
         }
     }
