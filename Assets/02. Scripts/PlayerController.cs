@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+
     [Space(3)]
     #endregion
 
@@ -112,6 +113,12 @@ public class PlayerController : MonoBehaviour
     private void Reload()
     {
         anim.SetTrigger("Reload");
+    }
+
+    IEnumerator ReloadRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+
     }
 
     #endregion
