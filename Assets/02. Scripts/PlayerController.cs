@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -15,6 +16,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    private WeaponHolder weaponHolder;
+
+    [SerializeField]
+    private TwoBoneIKConstraint twoBoneIK;
 
     [Space(3)]
     #endregion
@@ -103,6 +109,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Fire()
     {
+        weaponHolder.Fire();
         anim.SetTrigger("Fire");
     }
 
@@ -112,13 +119,16 @@ public class PlayerController : MonoBehaviour
     }
     private void Reload()
     {
+        weaponHolder.Reload();
         anim.SetTrigger("Reload");
+        StartCoroutine(ReloadRoutine());
     }
 
     IEnumerator ReloadRoutine()
     {
+        twoBoneIK.weight = 0f;
         yield return new WaitForSeconds(3f);
-
+        twoBoneIK.weight = 1f;
     }
 
     #endregion
