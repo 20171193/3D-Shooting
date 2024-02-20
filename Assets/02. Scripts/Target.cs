@@ -8,7 +8,12 @@ public class Target : MonoBehaviour, IDamageable
     private int hp;
 
     [SerializeField]
-    private MeshRenderer mr;
+    private Rigidbody rigid;
+
+    private void Update()
+    {
+        
+    }
 
     private void Die()
     {
