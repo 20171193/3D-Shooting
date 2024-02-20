@@ -129,7 +129,7 @@ public class PlayerCameraController : MonoBehaviour
             Mathf.Clamp(yRotation, -XRotation_Threshold, XRotation_Threshold);
             // Player Rotate
             transform.Rotate(Vector3.up, mouseSensitivity * inputDir.x * Time.deltaTime);
-            tpsCameraRoot.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+            tpsCameraRoot.localRotation = Quaternion.Euler(xRotation, 0, 0);
         }
 
     }
