@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
-{
-
+{ 
     #region 싱글턴 메서드
     private static GameManager instance = null;
-    [SerializeField] LayerManager layerManager;
+    [SerializeField] 
+    private LayerManager layerManager;
+    [SerializeField]
+    private PoolManager poolManager;
+
     public static LayerManager Layer { get { return instance.layerManager; } }
+    public static PoolManager Pool { get { return instance.poolManager; } }
 
     private void Awake()
     {
