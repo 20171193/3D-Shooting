@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &36171216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 36171218}
+  - component: {fileID: 36171217}
+  m_Layer: 0
+  m_Name: GameSceneFlow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &36171217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36171216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d8c0cea336a124ca5814edf210e774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  effectPrefab: {fileID: 0}
+--- !u!4 &36171218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36171216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4211926, y: 2.7826335, z: -12.115121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &922771886
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb9288e6012cdf4b8ac446988e04289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pooler: {fileID: 0}
+  autoRelease: 0
 --- !u!65 &922771888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -320,8 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504c121b8ef4cc4f809b5cb4fc7799a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 922771887}
-  poolSize: 20
 --- !u!114 &1889140827
 MonoBehaviour:
   m_ObjectHideFlags: 0

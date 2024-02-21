@@ -4,65 +4,35 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    [SerializeField]
-    private PooledObject prefab;
+    private Dictionary<string, ObjectPooler> poolDic = new Dictionary<string, ObjectPooler>();
 
-    private Stack<PooledObject> objectPool;
-    public Stack<PooledObject> ObjectPool { get { return objectPool; } }
-
-    [SerializeField]
-    private int poolSize;
-
-    private void Awake()
+    public void CreatePool(string name, PooledObject prefab, int size)
     {
-        CreatePool();
+        GameObject poolObject = new GameObject($"Pool_{name}");
+        ObjectPooler pooler = poolObject.AddComponent<ObjectPooler>();
+        pooler.CreatePool(prefab, size);
+
+        poolDic.Add(name, pooler);
     }
-
-    public void CreatePool(/*int poolSize*/)
+    public void RemovePool(string name)
     {
-        if(poolSize < 1)
+        if(!poolDic.ContainsKey(name))
         {
-            Debug.Log("has not been allocated : poolSize");
+            Debug.Log($"error remove pool : can't find {name}");
             return;
         }
 
-        //this.poolSize = poolSize;
-
-        objectPool = new Stack<PooledObject>(poolSize);
-
-        for(int i =0; i < poolSize; i++)
-        {
-            // Create pool
-            PooledObject instance = Instantiate(prefab);
-            instance.gameObject.SetActive(false);
-            objectPool.Push(instance);
-        }
+        poolDic.Remove(name);
     }
 
-    public PooledObject GetPool()
+    public PooledObject GetPool(string name, Vector3 position, Quaternion rotation)
     {
-        // When retrieving from the pool, activate.
-        if (objectPool.Count > 0)
+        if (!poolDic.ContainsKey(name))
         {
-            PooledObject instance = objectPool.Pop();
-            instance.gameObject.SetActive(true);
-            return instance;
+            Debug.Log($"error Get pool : can't find {name}");
+            return null;
         }
-        // Create anew when there is no remaining quantity.
-        else
-            return Instantiate(prefab);
-    }
 
-    public void ReturnPool(PooledObject instance)
-    {
-        if (objectPool.Count < poolSize)
-        {
-            // When returning to the pool, deactivate.
-            instance.gameObject.SetActive(false);
-            objectPool.Push(instance);
-        }
-        // Delete when the stack's capacity is fully utilized.
-        else
-            Destroy(instance);
+        return poolDic[name].GetPool(position, rotation);
     }
 }
