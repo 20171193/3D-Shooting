@@ -9,8 +9,8 @@ public class ObjectPoolTester : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            PooledObject instance = GameManager.Pool.GetPool();
-            instance.transform.position = Random.insideUnitSphere * 10;
+            //PooledObject instance = GameManager.Pool.GetPool();
+            //instance.transform.position = Random.insideUnitSphere * 10;
         }
     }
 }
