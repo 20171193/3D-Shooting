@@ -9,7 +9,9 @@ public class PooledObject : MonoBehaviour
 
     [SerializeField]
     private bool autoRelease;
-
+    [SerializeField]
+    private float releaseTime;
+    
     private Coroutine releaseRoutine;
 
     private void OnEnable()
@@ -36,7 +38,7 @@ public class PooledObject : MonoBehaviour
 
     IEnumerator ReturnPool()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(releaseTime);
         Release();
     }
 }
